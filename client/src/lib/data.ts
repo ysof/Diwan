@@ -2,6 +2,10 @@
  * ديـــوان - Arabic Poetry Data Structure
  * Contains all poems and categories for the website
  */
+import tazrifContent from "../content/poems/tazrif-dumou.md?raw";
+import yaArifeenContent from "../content/poems/ya-arifeen-alshiir.md?raw";
+import helwatContent from "../content/poems/helwat-alawsaf.md?raw";
+import sharjahContent from "../content/poems/alsharjah.md?raw";
 
 export interface Poem {
   id: string;
@@ -23,167 +27,71 @@ export interface Category {
 // Categories
 export const categories: Category[] = [
   {
-    id: "love",
-    name: "الحب والعاطفة",
-    description: "قصائد تعبر عن مشاعر الحب والعاطفة والشوق",
+    id: "ghazal",
+    name: "الغزل والوصف",
+    description: "قصائد الغزل والوصف والمشاعر الرقيقة",
   },
   {
-    id: "nature",
-    name: "الطبيعة والجمال",
-    description: "قصائد تستحضر جمال الطبيعة والمناظر الخلابة",
+    id: "watani",
+    name: "وطنيات",
+    description: "قصائد في حب الوطن والمدح والولاء",
   },
   {
-    id: "heritage",
-    name: "التراث والهوية",
-    description: "قصائد تحتفي بالتراث العربي والهوية الثقافية",
+    id: "wijdan",
+    name: "وجدانيات",
+    description: "قصائد عن الحب والفراق والحنين",
   },
 ];
 
 // Sample Poems
 export const poems: Poem[] = [
   {
-    id: "poem-1",
-    title: "ليلة القمر",
-    poet: "أحمد شوقي",
-    excerpt: "قصيدة عن جمال القمر والليل الهادئ",
-    date: "2024-01-15",
-    categories: ["nature", "love"],
-    content: `يا ليل الصبح أيّ منك أحلى
-    أم شمس تغيب فتبقى الذكرى
-    القمر يرقص في السماء البعيدة
-    والنجوم تهمس أسرار الليل
-    
-    في كل شعاع يسقط من فوق
-    قصة حب قديمة تعود
-    تعود إلى أيام الشباب الغابرة
-    حين كان الحب بسيطاً وجميلاً
-    
-    يا ليل يا ليل، متى تنتهي رحلتك
-    ومتى يأتي الفجر بنوره الذهبي
-    لكن الليل يبقى، والقمر يبقى
-    والحب يبقى في قلب الشاعر الحزين`,
+    id: "tazrif-dumou",
+    title: "تذرف دموع",
+    poet: "زعل بن سرحان الغفلي",
+    content: tazrifContent,
+    categories: ["wijdan"],
+    excerpt: "قصيدة عن الحب والفراق",
+    date: "2026-02-01",
   },
   {
-    id: "poem-2",
-    title: "الوطن",
-    poet: "محمود درويش",
-    excerpt: "قصيدة عن الوطن والانتماء والجذور",
-    date: "2024-01-20",
-    categories: ["heritage"],
-    content: `الوطن ليس حجراً ولا تراباً
-    الوطن قلب ينبض في الصدر
-    الوطن ذكرى تعود كل فجر
-    الوطن حلم لا ينام
-    
-    في كل شارع من شوارعك
-    أسمع صوت أجدادي
-    في كل حجر من أحجارك
-    أرى وجه أمي الحنون
-    
-    الوطن يا وطن، أنت البيت
-    أنت الأمان والحب والحياة
-    أنت الماضي والحاضر والمستقبل
-    أنت كل شيء لنا`,
+    id: "ya-arifeen-alshiir",
+    title: "يا عارفين الشعر",
+    poet: "زعل بن سرحان الغفلي",
+    content: yaArifeenContent,
+    categories: ["watani"],
+    excerpt: "قصيدة عن مدح وولاء الوطن",
+    date: "2026-02-01",
   },
   {
-    id: "poem-3",
-    title: "في انتظار الفجر",
-    poet: "نزار قباني",
-    excerpt: "قصيدة عن الأمل والانتظار والتغيير",
-    date: "2024-01-25",
-    categories: ["love", "heritage"],
-    content: `أنتظر الفجر وأنا في الظلام
-    أنتظر النور وأنا في الحزن
-    أنتظر الحب وأنا وحيد
-    أنتظر الحياة وأنا ميت
-    
-    لكن الانتظار جميل
-    الانتظار يعلمنا الصبر
-    الانتظار يملأ القلب بالأمل
-    الانتظار هو الحياة
-    
-    فليأتِ الفجر أو لا يأتِ
-    فأنا هنا، أنتظر
-    أنتظر اللحظة التي تتغير فيها كل شيء
-    اللحظة التي يصبح فيها الحلم حقيقة`,
+    id: "helwat-alawsaf",
+    title: "حلوة الأوصاف",
+    poet: "زعل بن سرحان الغفلي",
+    content: helwatContent,
+    categories: ["ghazal"],
+    excerpt: "قصيدة غزل ووصف",
+    date: "2026-02-01",
   },
   {
-    id: "poem-4",
-    title: "الربيع القادم",
-    poet: "فاروق جويدة",
-    excerpt: "قصيدة عن الطبيعة والتجدد والأمل",
-    date: "2024-02-01",
-    categories: ["nature"],
-    content: `يأتي الربيع بألوانه الزاهية
-    يأتي بالزهور والعطور والفراشات
-    يأتي بالحياة بعد موت الشتاء
-    يأتي بالأمل بعد اليأس
-    
-    الأرض تستيقظ من نومها
-    الأشجار تلبس ثوباً أخضر جديداً
-    الطير تغني أجمل الألحان
-    كل شيء يتجدد، كل شيء يحيا
-    
-    يا ربيع يا ربيع
-    أنت رسالة الله إلى الأرض
-    أنت دليل على أن الحياة لا تنتهي
-    أنت الأمل الذي لا يموت`,
-  },
-  {
-    id: "poem-5",
-    title: "همسة الليل",
-    poet: "إيليا أبو ماضي",
-    excerpt: "قصيدة عن الأسرار والليل والروح",
-    date: "2024-02-05",
-    categories: ["love"],
-    content: `في الليل الهادئ، حين ينام العالم
-    تأتي الأسرار وتهمس في الأذن
-    تهمس عن الحب الذي لا يُقال
-    تهمس عن الأحلام التي لا تتحقق
-    
-    الليل يحفظ أسرارنا
-    الليل يفهم وجعنا
-    الليل يسمع صرخات قلوبنا
-    الليل هو صديقنا الوفي
-    
-    فليأتِ الليل بأسراره
-    فليأتِ بهمساته وأحلامه
-    فأنا أحب الليل وأحب أسراره
-    الليل هو حيث أجد نفسي`,
-  },
-  {
-    id: "poem-6",
-    title: "الحنين",
-    poet: "جبران خليل جبران",
-    excerpt: "قصيدة عن الحنين والذكريات والبعد",
-    date: "2024-02-10",
-    categories: ["love", "heritage"],
-    content: `أحن إلى الماضي، إلى الأيام الجميلة
-    أحن إلى الأماكن التي ولدت فيها
-    أحن إلى الوجوه التي أحببتها
-    أحن إلى الأصوات التي سمعتها
-    
-    الحنين هو الألم الجميل
-    الحنين هو الذاكرة التي تؤلم
-    الحنين هو الحب الذي لا ينتهي
-    الحنين هو روح الإنسان
-    
-    فليبقَ الحنين في قلبي
-    فليبقَ يذكرني بمن كنت
-    فليبقَ يعلمني أن الحياة جميلة
-    فليبقَ الحنين إلى الأبد`,
+    id: "alsharjah",
+    title: "الشارقة",
+    poet: "زعل بن سرحان الغفلي",
+    content: sharjahContent,
+    categories: ["watani"],
+    excerpt: "قصيدة وطنية في مدح الشارقة وحاكمها",
+    date: "2026-02-01",
   },
 ];
 
 // Helper functions
 export function getPoemsByCategory(categoryId: string): Poem[] {
-  return poems.filter((poem) => poem.categories.includes(categoryId));
+  return poems.filter(poem => poem.categories.includes(categoryId));
 }
 
 export function getCategoryById(categoryId: string): Category | undefined {
-  return categories.find((cat) => cat.id === categoryId);
+  return categories.find(cat => cat.id === categoryId);
 }
 
 export function getPoemById(poemId: string): Poem | undefined {
-  return poems.find((poem) => poem.id === poemId);
+  return poems.find(poem => poem.id === poemId);
 }

@@ -6,21 +6,26 @@
 /* Arabic Typography System */
 @layer base {
   html {
-    font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+    font-family: "IBM Plex Sans Arabic", system-ui, sans-serif;
     direction: rtl;
     text-align: right;
   }
 
   /* Poem text: Aref Ruqaa Ink for elegant, readable poetry */
   .poem-text {
-    font-family: 'Aref Ruqaa Ink', serif;
+    font-family: "Aref Ruqaa Ink", serif;
     font-size: clamp(1.125rem, 2vw, 1.375rem);
     line-height: 2;
     letter-spacing: 0.05em;
   }
 
   /* Headings: Bold, editorial style */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 700;
     letter-spacing: -0.02em;
   }
@@ -41,7 +46,8 @@
   }
 
   /* Body text: Readable, generous line height */
-  p, li {
+  p,
+  li {
     font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
     line-height: 1.8;
     letter-spacing: 0.01em;
@@ -95,8 +101,8 @@
 
 :root {
   /* Warm, editorial color palette - Light mode */
-  --primary: oklch(0.55 0.15 45);      /* Warm terracotta/rust */
-  --primary-foreground: oklch(0.98 0 0);  /* Off-white */
+  --primary: oklch(0.55 0.15 45); /* Warm terracotta/rust */
+  --primary-foreground: oklch(0.98 0 0); /* Off-white */
   --sidebar-primary: oklch(0.55 0.15 45);
   --sidebar-primary-foreground: oklch(0.98 0 0);
   --chart-1: oklch(0.65 0.12 45);
@@ -104,23 +110,23 @@
   --chart-3: oklch(0.45 0.18 45);
   --chart-4: oklch(0.35 0.2 45);
   --chart-5: oklch(0.25 0.22 45);
-  
+
   --radius: 0.5rem;
-  --background: oklch(0.98 0.001 65);     /* Warm off-white/sand */
-  --foreground: oklch(0.22 0.01 65);      /* Deep charcoal */
-  --card: oklch(1 0 0);                   /* Pure white */
+  --background: oklch(0.98 0.001 65); /* Warm off-white/sand */
+  --foreground: oklch(0.22 0.01 65); /* Deep charcoal */
+  --card: oklch(1 0 0); /* Pure white */
   --card-foreground: oklch(0.22 0.01 65);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.22 0.01 65);
-  --secondary: oklch(0.92 0.005 45);      /* Light sand */
+  --secondary: oklch(0.92 0.005 45); /* Light sand */
   --secondary-foreground: oklch(0.35 0.01 65);
-  --muted: oklch(0.88 0.002 65);          /* Muted light gray */
+  --muted: oklch(0.88 0.002 65); /* Muted light gray */
   --muted-foreground: oklch(0.5 0.01 65);
-  --accent: oklch(0.65 0.12 200);         /* Muted teal */
+  --accent: oklch(0.65 0.12 200); /* Muted teal */
   --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.002 65);         /* Light border */
+  --border: oklch(0.92 0.002 65); /* Light border */
   --input: oklch(0.95 0.001 65);
   --ring: oklch(0.55 0.15 45);
   --sidebar: oklch(0.98 0.001 65);
@@ -133,13 +139,13 @@
 
 .dark {
   /* Deep charcoal/dark blue-black - Dark mode */
-  --primary: oklch(0.65 0.12 45);         /* Warm terracotta */
+  --primary: oklch(0.65 0.12 45); /* Warm terracotta */
   --primary-foreground: oklch(0.98 0 0);
   --sidebar-primary: oklch(0.65 0.12 45);
   --sidebar-primary-foreground: oklch(0.98 0 0);
-  --background: oklch(0.15 0.008 280);    /* Deep charcoal */
-  --foreground: oklch(0.92 0.005 65);     /* Off-white */
-  --card: oklch(0.22 0.01 280);           /* Slightly lighter charcoal */
+  --background: oklch(0.15 0.008 280); /* Deep charcoal */
+  --foreground: oklch(0.92 0.005 65); /* Off-white */
+  --card: oklch(0.22 0.01 280); /* Slightly lighter charcoal */
   --card-foreground: oklch(0.92 0.005 65);
   --popover: oklch(0.22 0.01 280);
   --popover-foreground: oklch(0.92 0.005 65);
@@ -147,7 +153,7 @@
   --secondary-foreground: oklch(0.8 0.005 65);
   --muted: oklch(0.32 0.008 280);
   --muted-foreground: oklch(0.7 0.01 65);
-  --accent: oklch(0.65 0.12 200);         /* Muted teal */
+  --accent: oklch(0.65 0.12 200); /* Muted teal */
   --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
@@ -173,7 +179,11 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image: radial-gradient(circle at 20% 50%, rgba(139, 90, 43, 0.02) 0%, transparent 50%);
+    background-image: radial-gradient(
+      circle at 20% 50%,
+      rgba(139, 90, 43, 0.02) 0%,
+      transparent 50%
+    );
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),

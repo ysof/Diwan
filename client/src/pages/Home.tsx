@@ -28,11 +28,13 @@ export default function Home() {
 
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-              مجلة الشعر العربي الحديثة
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              ديوان الشاعر زعل بن سرحان الغفلي
             </h1>
+
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-              مكان هادئ وجميل لاستكشاف وقراءة الشعر العربي. نقدم لك مختارات من أجمل القصائد في بيئة تحترم الكلمة وتقدرها.
+              مكان هادئ وجميل لاستكشاف وقراءة الشعر العربي. نقدم لك مختارات من
+              أجمل القصائد في بيئة تحترم الكلمة وتقدرها.
             </p>
 
             {/* CTA Buttons */}
@@ -65,7 +67,7 @@ export default function Home() {
             </p>
 
             <div className="grid gap-6">
-              {featuredPoems.map((poem) => (
+              {featuredPoems.map(poem => (
                 <Link key={poem.id} href={`/poem/${poem.id}`}>
                   <div className="editorial-card cursor-pointer group">
                     <div className="flex items-start justify-between mb-3">
@@ -73,15 +75,17 @@ export default function Home() {
                         <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                           {poem.title}
                         </h3>
-                        <p className="text-sm text-muted-foreground mt-1">{poem.poet}</p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {poem.poet}
+                        </p>
                       </div>
                     </div>
                     <p className="text-muted-foreground leading-relaxed mb-4">
                       {poem.excerpt}
                     </p>
                     <div className="flex gap-2 flex-wrap">
-                      {poem.categories.map((catId) => {
-                        const category = categories.find((c) => c.id === catId);
+                      {poem.categories.map(catId => {
+                        const category = categories.find(c => c.id === catId);
                         return category ? (
                           <span
                             key={catId}
@@ -121,7 +125,7 @@ export default function Home() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {categories.map((category) => (
+              {categories.map(category => (
                 <Link key={category.id} href={`/category/${category.id}`}>
                   <div className="editorial-card cursor-pointer group text-center">
                     <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">
@@ -146,10 +150,12 @@ export default function Home() {
               عن ديـــوان
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              ديـــوان هي منصة مخصصة لعشاق الشعر العربي. نؤمن بأن الشعر هو روح الأدب العربي، وأن كل قصيدة تستحق أن تُقرأ بهدوء وتأمل.
+              ديـــوان هي منصة مخصصة لعشاق الشعر العربي. نؤمن بأن الشعر هو روح
+              الأدب العربي، وأن كل قصيدة تستحق أن تُقرأ بهدوء وتأمل.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              هنا تجد مختارات من القصائد الجميلة، منظمة بعناية وعرضة بتصميم يحترم الكلمة ويقدرها.
+              هنا تجد مختارات من القصائد الجميلة، منظمة بعناية وعرضة بتصميم
+              يحترم الكلمة ويقدرها.
             </p>
             <Link href="/about">
               <button className="px-6 py-2 text-primary font-semibold hover:text-accent transition-colors duration-300">
