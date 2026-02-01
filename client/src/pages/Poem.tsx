@@ -8,6 +8,25 @@ import { Link, useParams } from "wouter";
 import { Layout } from "@/components/Layout";
 import { getPoemById, categories } from "@/lib/data";
 import { ArrowLeft, Share2 } from "lucide-react";
+function splitHemistich(line: string): { right: string; left: string } {
+  // split by | if provided, otherwise try common separators
+  const raw = line
+    .replace(/\u200f|\u200e/g, "") // remove direction marks if any
+    .trim();
+
+  const byPipe = raw.split("|");
+  if (byPipe.length >= 2) {
+    return { right: byPipe[0].trim(), left: byPipe.slice(1).join("|").trim() };
+  }
+
+  // optional: try Arabic/Latin separators if you paste "—" or "-" etc.
+  const byDash = raw.split("—");
+  if (byDash.length >= 2) {
+    return { right: byDash[0].trim(), left: byDash.slice(1).join("—").trim() };
+  }
+
+  return { right: raw, left: "" };
+}
 
 export default function Poem() {
   const params = useParams();
@@ -108,21 +127,47 @@ export default function Poem() {
             </div>
           </div>
 
-          {/* Poem Content — FINAL readable colors */}
-          <div
-            className="
-              poem-text
-              mb-12
-              whitespace-pre-wrap
-              leading-loose
-              text-lg
-              text-neutral-900
-              dark:text-neutral-100
-              font-serif
-            "
-          >
-            {poem.content}
-          </div>
+          {/* Poem Content */}
+          {/* Poem Content (Word-like: title on top + two columns per verse) */}
+          <section className="mb-12" dir="rtl">
+            <div
+              className="
+      font-poetry
+      text-neutral-900
+      dark:text-neutral-100
+      text-lg
+      leading-[2.6]
+    "
+            >
+              {/* If poem.content is an array => render like Word (right/left) */}
+              {Array.isArray(poem.content) ? (
+                <div className="space-y-4">
+                  {poem.content.map((line: string, index: number) => {
+                    const { right, left } = splitHemistich(line);
+                    const fullLine = left ? `${right} — ${left}` : right;
+
+                    return (
+                      <div key={index}>
+                        {/* Mobile: single line */}
+                        <div className="block md:hidden text-right whitespace-pre-wrap">
+                          {fullLine}
+                        </div>
+
+                        {/* Desktop: two columns (right/left) */}
+                        <div className="hidden md:grid md:grid-cols-2 gap-x-10 gap-y-2">
+                          <div className="text-right">{right}</div>
+                          <div className="text-left">{left}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                // fallback: old poems that still use string content
+                <div className="whitespace-pre-wrap">{poem.content}</div>
+              )}
+            </div>
+          </section>
 
           {/* Footer Navigation */}
           <div className="pt-8 border-t border-border flex justify-between items-center">

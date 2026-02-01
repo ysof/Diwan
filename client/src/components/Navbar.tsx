@@ -14,10 +14,18 @@ export function Navbar() {
         {/* Logo / Brand */}
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
+          {/* Light mode logo */}
           <img
             src="/logo.png"
-            alt="ديوان"
-            className="h-10 w-auto md:h-12 object-contain"
+            alt="Diwan Logo"
+            className="h-10 block dark:hidden"
+          />
+
+          {/* Dark mode logo */}
+          <img
+            src="/logo-white.png"
+            alt="Diwan Logo"
+            className="h-10 hidden dark:block"
           />
         </Link>
 
