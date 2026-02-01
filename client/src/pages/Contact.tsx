@@ -65,7 +65,7 @@ export default function Contact() {
                 <Phone className="w-5 h-5 text-primary" />
                 <h3 className="font-semibold text-foreground">الهاتف</h3>
               </div>
-              <p className="text-muted-foreground">+966 50 000 0000</p>
+              <p className="text-muted-foreground">971 50 000 0000</p>
             </div>
 
             <div className="editorial-card">

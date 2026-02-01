@@ -72,6 +72,22 @@ export default function Poem() {
               </button>
             </div>
           </header>
+          {/* Poem Image */}
+          {poem.id === "alsharjah" && (
+            <div className="mb-12">
+              <img
+                src="/poems/sharjah.png"
+                alt="الشارقة"
+                className="
+        w-full
+        max-h-[420px]
+        object-cover
+        rounded-xl
+        shadow-sm
+      "
+              />
+            </div>
+          )}
 
           {/* Categories */}
           <div className="mb-10 pb-8 border-b border-border">

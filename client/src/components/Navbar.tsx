@@ -45,7 +45,7 @@ export function Navbar() {
             href="/about"
             className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
           >
-            عن ديوان
+            عن الشاعر
           </Link>
           <Link
             href="/contact"
@@ -86,7 +86,7 @@ export function Navbar() {
             href="/about"
             className="px-4 py-2 text-foreground hover:bg-secondary rounded-lg transition-colors duration-300"
           >
-            عن ديوان
+            عن الشاعر
           </Link>
           <Link
             href="/contact"

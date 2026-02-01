@@ -22,7 +22,7 @@ export default function Home() {
         {/* Decorative text background */}
         <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
           <div className="text-9xl md:text-[20rem] font-bold text-primary select-none">
-            ديـــوان
+            ديـــــــــــــــــــوان
           </div>
         </div>
 
