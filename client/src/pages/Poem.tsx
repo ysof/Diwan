@@ -8,18 +8,15 @@ import { Link, useParams } from "wouter";
 import { Layout } from "@/components/Layout";
 import { getPoemById, categories } from "@/lib/data";
 import { ArrowLeft, Share2 } from "lucide-react";
+
 function splitHemistich(line: string): { right: string; left: string } {
-  // split by | if provided, otherwise try common separators
-  const raw = line
-    .replace(/\u200f|\u200e/g, "") // remove direction marks if any
-    .trim();
+  const raw = line.replace(/\u200f|\u200e/g, "").trim();
 
   const byPipe = raw.split("|");
   if (byPipe.length >= 2) {
     return { right: byPipe[0].trim(), left: byPipe.slice(1).join("|").trim() };
   }
 
-  // optional: try Arabic/Latin separators if you paste "—" or "-" etc.
   const byDash = raw.split("—");
   if (byDash.length >= 2) {
     return { right: byDash[0].trim(), left: byDash.slice(1).join("—").trim() };
@@ -91,19 +88,14 @@ export default function Poem() {
               </button>
             </div>
           </header>
+
           {/* Poem Image */}
           {poem.id === "alsharjah" && (
             <div className="mb-12">
               <img
                 src="/poems/sharjah.png"
                 alt="الشارقة"
-                className="
-        w-full
-        max-h-[420px]
-        object-cover
-        rounded-xl
-        shadow-sm
-      "
+                className="w-full max-h-[420px] object-cover rounded-xl shadow-sm"
               />
             </div>
           )}
@@ -127,19 +119,9 @@ export default function Poem() {
             </div>
           </div>
 
-          {/* Poem Content */}
-          {/* Poem Content (Word-like: title on top + two columns per verse) */}
+          {/* Poem Content (Mobile: one line, Desktop: two columns correctly placed) */}
           <section className="mb-12" dir="rtl">
-            <div
-              className="
-      font-poetry
-      text-neutral-900
-      dark:text-neutral-100
-      text-lg
-      leading-[2.6]
-    "
-            >
-              {/* If poem.content is an array => render like Word (right/left) */}
+            <div className="font-poetry text-neutral-900 dark:text-neutral-100 text-lg leading-[2.6]">
               {Array.isArray(poem.content) ? (
                 <div className="space-y-4">
                   {poem.content.map((line: string, index: number) => {
@@ -148,22 +130,23 @@ export default function Poem() {
 
                     return (
                       <div key={index}>
-                        {/* Mobile: single line */}
+                        {/* Mobile: one line */}
                         <div className="block md:hidden text-right whitespace-pre-wrap">
                           {fullLine}
                         </div>
 
-                        {/* Desktop: two columns (right/left) */}
+                        {/* Desktop: two columns (LEFT column shows left hemistich, RIGHT column shows right hemistich) */}
                         <div className="hidden md:grid md:grid-cols-2 gap-x-10 gap-y-2">
-                          <div className="text-right">{right}</div>
+                          {/* Left column */}
                           <div className="text-left">{left}</div>
+                          {/* Right column */}
+                          <div className="text-right">{right}</div>
                         </div>
                       </div>
                     );
                   })}
                 </div>
               ) : (
-                // fallback: old poems that still use string content
                 <div className="whitespace-pre-wrap">{poem.content}</div>
               )}
             </div>

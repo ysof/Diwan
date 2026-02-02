@@ -84,7 +84,7 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4">تواصل معنا</h4>
             <ul className="space-y-2 text-muted-foreground">
               <li>البريد الإلكتروني: info@diwan.com</li>
-              <li>الهاتف: +966 50 000 0000</li>
+              <li>الهاتف: +971 50 000 0000</li>
               <li>
                 <Link
                   href="/contact"
