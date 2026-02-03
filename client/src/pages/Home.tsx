@@ -1,7 +1,6 @@
 /**
  * Home Page - الرئيسية
- * Hero section with featured content and CTAs
- * Design: Editorial, minimalist, calm
+ * Hero section matching reference layout
  */
 
 import { Link } from "wouter";
@@ -14,30 +13,39 @@ export default function Home() {
 
   return (
     <Layout>
-      {/* Hero Section */}
+      {/* ================= HERO SECTION ================= */}
       <section className="relative py-20 md:py-32 overflow-hidden">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-secondary/50 to-background pointer-events-none" />
 
-        {/* Decorative text background */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-          <div className="text-9xl md:text-[20rem] font-bold text-primary select-none">
-            ديـــــــــــــــــــوان
-          </div>
-        </div>
-
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            {/* ===== TEXT ABOVE HEAD ===== */}
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
               ديوان الشاعر زعل بن سرحان الغفلي
             </h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed">
               مكان هادئ وجميل لاستكشاف وقراءة الشعر العربي. نقدم لك مختارات من
               أجمل القصائد في بيئة تحترم الكلمة وتقدرها.
             </p>
 
-            {/* CTA Buttons */}
+            {/* ===== POET IMAGE (CENTER / 3D) ===== */}
+            <div className="relative flex justify-center mb-12">
+              <img
+                src="/poet-hero.png"
+                alt="الشاعر زعل بن سرحان الغفلي"
+                className="
+                  w-[220px]
+                  md:w-[300px]
+                  relative
+                  z-10
+                  drop-shadow-[0_35px_45px_rgba(0,0,0,0.35)]
+                "
+              />
+            </div>
+
+            {/* ===== BUTTONS BELOW LEGS ===== */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/poems">
                 <button className="px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-accent transition-colors duration-300 flex items-center justify-center gap-2">
@@ -45,6 +53,7 @@ export default function Home() {
                   <ArrowLeft className="w-4 h-4" />
                 </button>
               </Link>
+
               <Link href="/categories">
                 <button className="px-8 py-3 border border-primary text-primary font-semibold rounded-lg hover:bg-secondary transition-colors duration-300">
                   استكشف التصنيفات
@@ -55,7 +64,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Poems Section */}
+      {/* ================= FEATURED POEMS ================= */}
       <section className="py-16 md:py-24 bg-card">
         <div className="container">
           <div className="max-w-4xl mx-auto">
@@ -70,32 +79,15 @@ export default function Home() {
               {featuredPoems.map(poem => (
                 <Link key={poem.id} href={`/poem/${poem.id}`}>
                   <div className="editorial-card cursor-pointer group">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                          {poem.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {poem.poet}
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
+                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                      {poem.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {poem.poet}
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mt-4">
                       {poem.excerpt}
                     </p>
-                    <div className="flex gap-2 flex-wrap">
-                      {poem.categories.map(catId => {
-                        const category = categories.find(c => c.id === catId);
-                        return category ? (
-                          <span
-                            key={catId}
-                            className="inline-block px-3 py-1 bg-secondary text-secondary-foreground text-xs rounded-full"
-                          >
-                            {category.name}
-                          </span>
-                        ) : null;
-                      })}
-                    </div>
                   </div>
                 </Link>
               ))}
@@ -113,7 +105,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories Preview */}
+      {/* ================= CATEGORIES ================= */}
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="max-w-4xl mx-auto">
@@ -142,7 +134,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* ================= ABOUT ================= */}
       <section className="py-16 md:py-24 bg-card">
         <div className="container">
           <div className="max-w-2xl mx-auto text-center">

@@ -14,7 +14,7 @@ export default function About() {
         <div className="max-w-3xl mx-auto">
           {/* Poet Image */}
           <div className="mb-10 flex justify-center">
-            <div className="w-48 h-48 rounded-full overflow-hidden border border-neutral-300 dark:border-neutral-700 shadow-md">
+            <div className="w-48 h-48 rounded-full overflow-hidden border border-neutral-300 dark:border-neutral-700">
               <img
                 src="/poet.png"
                 alt="الشاعر زعل بن سرحان الغفلي"
@@ -23,7 +23,6 @@ export default function About() {
         h-full
         object-cover
         object-[50%_15%]
-
       "
               />
             </div>
