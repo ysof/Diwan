@@ -33,13 +33,17 @@ export default function Poems() {
                       <h2 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">
                         {poem.title}
                       </h2>
-                      <p className="text-sm text-muted-foreground mb-3">{poem.poet}</p>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        {poem.poet}
+                      </p>
                       <p className="text-foreground leading-relaxed mb-4">
                         {poem.excerpt}
                       </p>
                       <div className="flex gap-2 flex-wrap">
                         {poem.categories.map((catId) => {
-                          const category = categories.find((c) => c.id === catId);
+                          const category = categories.find(
+                            (c) => c.id === catId,
+                          );
                           return category ? (
                             <span
                               key={catId}

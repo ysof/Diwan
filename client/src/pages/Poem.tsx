@@ -1,5 +1,5 @@
 /**
- * Poem Detail Page - صفحة قصيدة
+ * Poem Detail Page
  * Focused reading experience for individual poems
  * Design: Editorial, minimalist, poem-focused
  */
@@ -106,8 +106,8 @@ export default function Poem() {
               التصنيفات:
             </p>
             <div className="flex gap-2 flex-wrap">
-              {poem.categories.map(catId => {
-                const category = categories.find(c => c.id === catId);
+              {poem.categories.map((catId) => {
+                const category = categories.find((c) => c.id === catId);
                 return category ? (
                   <Link key={catId} href={`/category/${catId}`}>
                     <span className="inline-block px-4 py-2 bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors duration-300 cursor-pointer">
