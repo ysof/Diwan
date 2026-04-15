@@ -1,29 +1,13 @@
 /**
  * Poem Detail Page
  * Focused reading experience for individual poems
- * Design: Editorial, minimalist, poem-focused
+ * Design: Editorial, minimalist, poem-focused with decorative framing
  */
 
 import { Link, useParams } from "wouter";
 import { Layout } from "@/components/Layout";
 import { getPoemById, categories } from "@/lib/data";
 import { ArrowLeft, Share2 } from "lucide-react";
-
-function splitHemistich(line: string): { right: string; left: string } {
-  const raw = line.replace(/\u200f|\u200e/g, "").trim();
-
-  const byPipe = raw.split("|");
-  if (byPipe.length >= 2) {
-    return { right: byPipe[0].trim(), left: byPipe.slice(1).join("|").trim() };
-  }
-
-  const byDash = raw.split("—");
-  if (byDash.length >= 2) {
-    return { right: byDash[0].trim(), left: byDash.slice(1).join("—").trim() };
-  }
-
-  return { right: raw, left: "" };
-}
 
 export default function Poem() {
   const params = useParams();
@@ -106,26 +90,27 @@ export default function Poem() {
               التصنيفات:
             </p>
             <div className="flex gap-2 flex-wrap">
-              {poem.categories.map((catId) => {
-                const category = categories.find((c) => c.id === catId);
+              {(() => {
+                const category = categories.find((c) => c.name === poem.category || poem.category.includes(c.name));
                 return category ? (
-                  <Link key={catId} href={`/category/${catId}`}>
+                  <Link key={category.id} href={`/category/${category.id}`}>
                     <span className="inline-block px-4 py-2 bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors duration-300 cursor-pointer">
                       {category.name}
                     </span>
                   </Link>
                 ) : null;
-              })}
+              })()}
             </div>
           </div>
 
-          {/* Poem Content (Mobile: one line, Desktop: two columns correctly placed) */}
-          <section className="mb-12" dir="rtl">
-            <div className="font-poetry text-neutral-900 dark:text-neutral-100 text-lg leading-[2.6]">
+          {/* Poem Content with Decorative Frame */}
+          <section className="mb-12 poem-frame" dir="rtl">
+            <div className="poem-text text-neutral-900 dark:text-neutral-100">
               {Array.isArray(poem.content) ? (
                 <div className="space-y-4">
-                  {poem.content.map((line: string, index: number) => {
-                    const { right, left } = splitHemistich(line);
+                  {poem.content.map((verse: string[], index: number) => {
+                    const right = verse[0] || "";
+                    const left = verse[1] || "";
                     const fullLine = left ? `${right} — ${left}` : right;
 
                     return (
@@ -135,12 +120,12 @@ export default function Poem() {
                           {fullLine}
                         </div>
 
-                        {/* Desktop: two columns (LEFT column shows left hemistich, RIGHT column shows right hemistich) */}
+                        {/* Desktop: two columns */}
                         <div className="hidden md:grid md:grid-cols-2 gap-x-10 gap-y-2">
-                          {/* Left column */}
-                          <div className="text-left">{left}</div>
-                          {/* Right column */}
+                          {/* Right column (Sadr) */}
                           <div className="text-right">{right}</div>
+                          {/* Left column (Ajuuz) */}
+                          <div className="text-left">{left}</div>
                         </div>
                       </div>
                     );

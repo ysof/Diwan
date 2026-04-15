@@ -71,17 +71,18 @@ export default function Category() {
                           {poem.excerpt}
                         </p>
                         <div className="flex gap-2 flex-wrap">
-                          {poem.categories.map((catId) => {
-                            const cat = categories.find((c) => c.id === catId);
+                          {/* Display the single category of the poem */}
+                          {(() => {
+                            const cat = categories.find((c) => c.name === poem.category || poem.category.includes(c.name));
                             return cat ? (
                               <span
-                                key={catId}
+                                key={cat.id}
                                 className="inline-block px-3 py-1 bg-secondary text-secondary-foreground text-xs rounded-full"
                               >
                                 {cat.name}
                               </span>
                             ) : null;
-                          })}
+                          })()}
                         </div>
                       </div>
                       <div className="text-xs text-muted-foreground whitespace-nowrap">

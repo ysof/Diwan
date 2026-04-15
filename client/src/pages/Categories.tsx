@@ -10,6 +10,9 @@ import { categories, getPoemsByCategory } from "@/lib/data";
 import { ArrowLeft } from "lucide-react";
 
 export default function Categories() {
+  // التحقق من أن التصنيفات مصفوفة
+  const safeCategories = Array.isArray(categories) ? categories : [];
+
   return (
     <Layout>
       <div className="container py-12 md:py-16">
@@ -26,27 +29,41 @@ export default function Categories() {
 
           {/* Categories Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {categories.map((category) => {
-              const poemCount = getPoemsByCategory(category.id).length;
-              return (
-                <Link key={category.id} href={`/category/${category.id}`}>
-                  <div className="editorial-card cursor-pointer group h-full">
-                    <h2 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-3">
-                      {category.name}
-                    </h2>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
-                      {category.description}
-                    </p>
-                    <div className="flex items-center justify-between pt-4 border-t border-border">
-                      <span className="text-sm text-muted-foreground">
-                        {poemCount} قصيدة
-                      </span>
-                      <ArrowLeft className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform duration-300" />
+            {safeCategories.length > 0 ? (
+              safeCategories.map((category) => {
+                // التأكد من أن دالة جلب القصائد تعمل ولا تسبب خطأ
+                const categoryPoems =
+                  typeof getPoemsByCategory === "function"
+                    ? getPoemsByCategory(category.id)
+                    : [];
+                const poemCount = Array.isArray(categoryPoems)
+                  ? categoryPoems.length
+                  : 0;
+
+                return (
+                  <Link key={category.id} href={`/category/${category.id}`}>
+                    <div className="editorial-card cursor-pointer group h-full">
+                      <h2 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-3">
+                        {category.name}
+                      </h2>
+                      <p className="text-muted-foreground leading-relaxed mb-4">
+                        {category.description}
+                      </p>
+                      <div className="flex items-center justify-between pt-4 border-t border-border">
+                        <span className="text-sm text-muted-foreground">
+                          {poemCount} قصيدة
+                        </span>
+                        <ArrowLeft className="w-4 h-4 text-primary group-hover:translate-x-[-4px] transition-transform duration-300" />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              );
-            })}
+                  </Link>
+                );
+              })
+            ) : (
+              <div className="col-span-full text-center py-20 text-muted-foreground">
+                لا توجد تصنيفات متاحة حالياً.
+              </div>
+            )}
           </div>
         </div>
       </div>

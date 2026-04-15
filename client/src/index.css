@@ -4,18 +4,26 @@
 
 /* Arabic Typography System */
 @layer base {
+  @font-face {
+    font-family: "AMoshref-Naskh";
+    src: url("/assets/AMoshref-Naskh.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
   html {
     font-family: "IBM Plex Sans Arabic", system-ui, sans-serif;
     direction: rtl;
     text-align: right;
   }
 
-  /* Poem text: Aref Ruqaa Ink for elegant, readable poetry */
+  /* Poem text: AMoshref-Naskh exclusively for poem text */
   .poem-text {
-    font-family: "Aref Ruqaa Ink", serif;
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    line-height: 2;
-    letter-spacing: 0.05em;
+    font-family: "AMoshref-Naskh", serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    line-height: 2.4;
+    letter-spacing: 0.02em;
   }
 
   /* Headings: Bold, editorial style */
@@ -244,6 +252,25 @@
   /* Focus ring for accessibility */
   .focus-ring {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Decorative Poem Frame */
+  .poem-frame {
+    position: relative;
+    padding: 4rem;
+    border: 30px solid transparent;
+    border-image-source: url("/assets/poem-frame.png");
+    border-image-slice: 100;
+    border-image-repeat: stretch;
+    background-clip: padding-box;
+    background-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    .poem-frame {
+      padding: 2rem;
+      border-width: 15px;
+    }
   }
 
   @media (min-width: 640px) {

@@ -9,7 +9,8 @@ import { poems, categories } from "@/lib/data";
 import { ArrowLeft } from "lucide-react";
 
 export default function Home() {
-  const featuredPoems = poems.slice(0, 3);
+  // الإصلاح: التأكد من أن poems مصفوفة قبل عمل slice لتجنب خطأ "poems.slice is not a function"
+  const featuredPoems = Array.isArray(poems) ? poems.slice(0, 3) : [];
 
   return (
     <Layout>
@@ -76,21 +77,27 @@ export default function Home() {
             </p>
 
             <div className="grid gap-6">
-              {featuredPoems.map(poem => (
-                <Link key={poem.id} href={`/poem/${poem.id}`}>
-                  <div className="editorial-card cursor-pointer group">
-                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                      {poem.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {poem.poet}
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                      {poem.excerpt}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+              {featuredPoems.length > 0 ? (
+                featuredPoems.map((poem) => (
+                  <Link key={poem.id} href={`/poem/${poem.id}`}>
+                    <div className="editorial-card cursor-pointer group">
+                      <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                        {poem.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {poem.poet}
+                      </p>
+                      <p className="text-muted-foreground leading-relaxed mt-4">
+                        {poem.excerpt}
+                      </p>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <p className="text-center text-muted-foreground">
+                  جاري تحميل القصائد...
+                </p>
+              )}
             </div>
 
             <div className="text-center mt-12">
@@ -117,18 +124,19 @@ export default function Home() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {categories.map(category => (
-                <Link key={category.id} href={`/category/${category.id}`}>
-                  <div className="editorial-card cursor-pointer group text-center">
-                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">
-                      {category.name}
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      {category.description}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+              {Array.isArray(categories) &&
+                categories.map((category) => (
+                  <Link key={category.id} href={`/category/${category.id}`}>
+                    <div className="editorial-card cursor-pointer group text-center">
+                      <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">
+                        {category.name}
+                      </h3>
+                      <p className="text-muted-foreground text-sm">
+                        {category.description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
             </div>
           </div>
         </div>
