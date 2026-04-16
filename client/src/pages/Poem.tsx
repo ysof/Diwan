@@ -105,28 +105,19 @@ export default function Poem() {
 
           {/* Poem Content with Decorative Frame */}
           <section className="mb-12 poem-frame" dir="rtl">
-            <div className="poem-text text-neutral-900 dark:text-neutral-100">
+            <div className="poem-text">
               {Array.isArray(poem.content) ? (
-                <div className="space-y-4">
+                <div className="space-y-8">
                   {poem.content.map((verse: string[], index: number) => {
                     const right = verse[0] || "";
                     const left = verse[1] || "";
-                    const fullLine = left ? `${right} — ${left}` : right;
 
                     return (
-                      <div key={index}>
-                        {/* Mobile: one line */}
-                        <div className="block md:hidden text-right whitespace-pre-wrap">
-                          {fullLine}
-                        </div>
-
-                        {/* Desktop: two columns */}
-                        <div className="hidden md:grid md:grid-cols-2 gap-x-10 gap-y-2">
-                          {/* Right column (Sadr) */}
-                          <div className="text-right">{right}</div>
-                          {/* Left column (Ajuuz) */}
-                          <div className="text-left">{left}</div>
-                        </div>
+                      <div key={index} className="verse-row">
+                        {/* Sadr (Right part) */}
+                        <div className="sadr">{right}</div>
+                        {/* Ajuuz (Left part) */}
+                        <div className="ajuuz">{left}</div>
                       </div>
                     );
                   })}

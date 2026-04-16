@@ -28,6 +28,11 @@ export const categories: Category[] = [
   },
   { id: "madah", name: "قصائد مدح", description: "قصائد المدح والثناء" },
   { id: "hikam", name: "قصائد حكم", description: "قصائد الحكمة والمواعظ" },
+  {
+    id: "incomplete",
+    name: "قصائد غير مكتملة",
+    description: "مجموعة من القصائد التي لم تكتمل بعد",
+  },
 ];
 
 // استخراج البيانات من الكائن { "poems": [...] }
@@ -39,9 +44,12 @@ export const poems: Poem[] = rawPoems.map((p: any) => ({
   poet: p.poet || "زعل بن سرحان الغفلي",
   content: Array.isArray(p.content) ? p.content : [],
   category: p.category || "",
-  excerpt: p.content && p.content[0] && Array.isArray(p.content[0]) 
-    ? `${p.content[0][0]} ...` 
-    : (p.content && p.content[0] ? `${p.content[0]} ...` : ""),
+  excerpt:
+    p.content && p.content[0] && Array.isArray(p.content[0])
+      ? `${p.content[0][0]} ...`
+      : p.content && p.content[0]
+        ? `${p.content[0]} ...`
+        : "",
   date: p.date || "2024",
 }));
 

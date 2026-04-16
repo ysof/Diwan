@@ -18,7 +18,7 @@
     text-align: right;
   }
 
-  /* Poem text: AMoshref-Naskh exclusively for poem text */
+  /* Poem text: Original style */
   .poem-text {
     font-family: "AMoshref-Naskh", serif;
     font-size: clamp(1.25rem, 2.5vw, 1.5rem);
@@ -264,6 +264,56 @@
     border-image-repeat: stretch;
     background-clip: padding-box;
     background-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    .poem-frame {
+      padding: 2rem;
+      border-width: 15px;
+    }
+  }
+
+  /* Staggered Verse Layout */
+  .verse-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .sadr, .ajuuz {
+    white-space: nowrap;
+  }
+
+  .sadr {
+    align-self: flex-start;
+    padding-right: 1rem;
+  }
+
+  .ajuuz {
+    align-self: flex-end;
+    padding-left: 1rem;
+    text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    .verse-row {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+    
+    .sadr {
+      width: 48%;
+      text-align: right;
+    }
+    
+    .ajuuz {
+      width: 48%;
+      text-align: left;
+      margin-top: 3rem; /* Staggered effect */
+    }
   }
 
   @media (max-width: 768px) {
