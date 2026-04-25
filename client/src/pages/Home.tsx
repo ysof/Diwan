@@ -12,6 +12,9 @@ export default function Home() {
   // الإصلاح: التأكد من أن poems مصفوفة قبل عمل slice لتجنب خطأ "poems.slice is not a function"
   const featuredPoems = Array.isArray(poems) ? poems.slice(0, 3) : [];
 
+  // تحديد اللون الأحمر المستخدم (يمكنك تعديل الدرجة هنا لتطابق الخلفية تماماً)
+  const darkRed = "#8B0000"; 
+
   return (
     <Layout>
       {/* ================= HERO SECTION ================= */}
@@ -49,14 +52,20 @@ export default function Home() {
             {/* ===== BUTTONS BELOW LEGS ===== */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/poems">
-                <button className="px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-accent transition-colors duration-300 flex items-center justify-center gap-2">
+                <button 
+                  style={{ backgroundColor: darkRed }}
+                  className="px-8 py-3 text-white font-semibold rounded-lg hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2"
+                >
                   ابدأ القراءة
                   <ArrowLeft className="w-4 h-4" />
                 </button>
               </Link>
 
               <Link href="/categories">
-                <button className="px-8 py-3 border border-primary text-primary font-semibold rounded-lg hover:bg-secondary transition-colors duration-300">
+                <button 
+                  style={{ borderColor: darkRed, color: darkRed }}
+                  className="px-8 py-3 border bg-transparent font-semibold rounded-lg hover:bg-secondary/10 transition-all duration-300"
+                >
                   استكشف التصنيفات
                 </button>
               </Link>
@@ -81,7 +90,10 @@ export default function Home() {
                 featuredPoems.map((poem) => (
                   <Link key={poem.id} href={`/poem/${poem.id}`}>
                     <div className="editorial-card cursor-pointer group">
-                      <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                      <h3 
+                        style={{ '--group-hover-color': darkRed } as React.CSSProperties}
+                        className="text-xl font-bold text-foreground group-hover:text-[var(--group-hover-color)] transition-colors duration-300"
+                      >
                         {poem.title}
                       </h3>
                       <p className="text-sm text-muted-foreground mt-1">
@@ -102,7 +114,10 @@ export default function Home() {
 
             <div className="text-center mt-12">
               <Link href="/poems">
-                <button className="px-6 py-2 text-primary font-semibold hover:text-accent transition-colors duration-300 flex items-center justify-center gap-2 mx-auto">
+                <button 
+                  style={{ color: darkRed }}
+                  className="px-6 py-2 font-semibold hover:opacity-70 transition-all duration-300 flex items-center justify-center gap-2 mx-auto"
+                >
                   عرض جميع القصائد
                   <ArrowLeft className="w-4 h-4" />
                 </button>
@@ -128,7 +143,10 @@ export default function Home() {
                 categories.map((category) => (
                   <Link key={category.id} href={`/category/${category.id}`}>
                     <div className="editorial-card cursor-pointer group text-center">
-                      <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">
+                      <h3 
+                        style={{ '--group-hover-color': darkRed } as React.CSSProperties}
+                        className="text-lg font-bold text-foreground group-hover:text-[var(--group-hover-color)] transition-colors duration-300 mb-2"
+                      >
                         {category.name}
                       </h3>
                       <p className="text-muted-foreground text-sm">
@@ -158,7 +176,10 @@ export default function Home() {
               يحترم الكلمة ويقدرها.
             </p>
             <Link href="/about">
-              <button className="px-6 py-2 text-primary font-semibold hover:text-accent transition-colors duration-300">
+              <button 
+                style={{ color: darkRed }}
+                className="px-6 py-2 font-semibold hover:opacity-70 transition-all duration-300"
+              >
                 اقرأ المزيد
               </button>
             </Link>

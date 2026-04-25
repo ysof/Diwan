@@ -5,7 +5,8 @@
  */
 
 import { Layout } from "@/components/Layout";
-import { Mail, Phone, MapPin } from "lucide-react";
+// 1. Added Instagram and Mail icons from lucide-react
+import { Mail, Phone, MapPin, Instagram } from "lucide-react"; 
 import { useState } from "react";
 
 export default function Contact() {
@@ -29,7 +30,6 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, this would send the form data to a server
     console.log("Form submitted:", formData);
     setSubmitted(true);
     setFormData({ name: "", email: "", subject: "", message: "" });
@@ -52,12 +52,13 @@ export default function Contact() {
             {/* Contact Info */}
             <div className="editorial-card">
               <div className="flex items-center gap-3 mb-3">
-                <Mail className="w-5 h-5 text-primary" />
+                {/* 2. Changed Mail icon to Instagram icon */}
+                <Instagram className="w-5 h-5 text-primary" /> 
                 <h3 className="font-semibold text-foreground">
-                  البريد الإلكتروني
+                  انستغرام
                 </h3>
               </div>
-              <p className="text-muted-foreground">info@diwan.com</p>
+              <p className="text-muted-foreground">zaalalghfeli</p>
             </div>
 
             <div className="editorial-card">
@@ -65,7 +66,7 @@ export default function Contact() {
                 <Phone className="w-5 h-5 text-primary" />
                 <h3 className="font-semibold text-foreground">الهاتف</h3>
               </div>
-              <p className="text-muted-foreground">971 50 000 0000</p>
+              <p className="text-muted-foreground">4491 766 50 971</p>
             </div>
 
             <div className="editorial-card">
