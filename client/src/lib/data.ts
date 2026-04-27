@@ -29,6 +29,11 @@ export const categories: Category[] = [
   { id: "madah", name: "قصائد مدح", description: "قصائد المدح والثناء" },
   { id: "hikam", name: "قصائد حكم", description: "قصائد الحكمة والمواعظ" },
   {
+    id: "ihdaa",
+    name: "قصائد إهداء",
+    description: "قصائد التقدير والإهداءات الشخصية",
+  },
+  {
     id: "incomplete",
     name: "قصائد غير مكتملة",
     description: "مجموعة من القصائد التي لم تكتمل بعد",
